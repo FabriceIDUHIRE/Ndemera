@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ndemera - Get Paid by Your Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .sidebar-closed {
+            width: 70px;
+        }
+        .sidebar-closed .sidebar-text {
+            display: none;
+        }
+        .dashboard-content {
+            transition: all 0.3s ease;
+        }
+        .sidebar-open {
+            margin-left: 250px;
+        }
+        .sidebar-closed+ .dashboard-content {
+            margin-left: 70px;
+        }
+        .page-content {
+            min-height: calc(100vh - 80px);
+        }
+        .transaction-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                z-index: 50;
+                transform: translateX(-100%);
+            }
+            .sidebar-open {
+                transform: translateX(0);
+                margin-left: 0;
+            }
+            .sidebar-closed+ .dashboard-content, .sidebar-open+ .dashboard-content {
+                margin-left: 0;
+            }
+            .sidebar-toggle {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Public Homepage -->
+    <div id="homepage">
+        <!-- Navigation -->
+        <nav class="bg-black text-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <i class="fas fa-coffee text-orange-500 text-2xl mr-2"></i>
+                            <span class="text-xl font-bold text-orange-500">Ndemera</span>
+                        </div>
+                    </div>
+                    <div class="hidden md:ml-6 md:flex md:items-center space-x-4">
+                        <a href="#" class="text-white hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium">Features</a>
+                        <a href="#" class="text-white hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium">How It Works</a>
+                        <a href="#" class="text-white hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium">Pricing</a>
+                        <button onclick="showLoginModal()" class="ml-4 bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-medium">Login</button>
+                        <button onclick="showSignupModal()" class="ml-2 border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-4 py-2 rounded-md text-sm font-medium">Sign Up</button>
+                    </div>
+                    <div class="-mr-2 flex items-center md:hidden">
+                        <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-orange-500 focus:outline-none">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="gradient-bg text-white">
+            <div class="max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">Get Paid by Your Community</h1>
+                    <p class="mt-6 text-xl max-w-3xl mx-auto">Ndemera makes it easy to receive payments, track donations, and collaborate on group funding projects - all in one place.</p>
+                    <div class="mt-10">
+                        <button onclick="showSignupModal()" class="px-8 py-4 border border-transparent text-base font-medium rounded-md text-orange-600 bg-white hover:bg-gray-100 md:py-4 md:text-lg md:px-10">
+                            Create Your Account - It's Free
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                        Powerful Features for Your Needs
+                    </h2>
+                    <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+                        Everything you need to collect payments with ease
+                    </p>
+                </div>
+
+                <div class="mt-20">
+                    <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+                        <!-- Feature 1 -->
+                        <div class="text-center">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white mx-auto">
+                                <i class="fas fa-link text-xl"></i>
+                            </div>
+                            <div class="mt-5">
+                                <h3 class="text-lg font-medium text-gray-900">Personal Payment Link</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Get your own ndemera.me link to share anywhere. Friends and fans can send you money in seconds.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="text-center">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white mx-auto">
+                                <i class="fas fa-chart-line text-xl"></i>
+                            </div>
+                            <div class="mt-5">
+                                <h3 class="text-lg font-medium text-gray-900">Real-Time Tracking</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Track all your transactions, view your balance history, and see detailed analytics in your dashboard.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="text-center">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white mx-auto">
+                                <i class="fas fa-users text-xl"></i>
+                            </div>
+                            <div class="mt-5">
+                                <h3 class="text-lg font-medium text-gray-900">Group Funding</h3>
+                                <p class="mt-2 text-base text-gray-500">
+                                    Collaborate with group contributors and raise money together for common goals or projects.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="bg-black text-white">
+            <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+                <h2 class="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                    <span class="block">Ready to start collecting payments?</span>
+                    <span class="block text-orange-500">Start using Ndemera today.</span>
+                </h2>
+                <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                    <div class="inline-flex rounded-md shadow">
+                        <button onclick="showSignupModal()" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600">
+                            Get Started
+                        </button>
+                    </div>
+                    <div class="ml-3 inline-flex rounded-md shadow">
+                        <a href="#" class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-orange-500 bg-black hover:bg-gray-900">
+                            Learn more
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white">
+            <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold text-orange-500 mb-4">Ndemera</h3>
+                        <p class="text-gray-300">
+                            The easiest way to get paid by your community, track donations, and collaborate on funding projects.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-orange-500 mb-4">Quick Links</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-300 hover:text-white">Home</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">Features</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">Pricing</a></li>
+                            <li><a href="#" class="text-gray-300 hover:text-white">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-orange-500 mb-4">Connect With Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                        <p class="mt-4 text-gray-300">
+                            support@ndemera.com<br>
+                            +250 788 123 456
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-8 pt-8 border-t border-gray-700">
+                    <p class="text-gray-400 text-sm text-center">
+                        &copy; 2023 Ndemera. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                </div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-medium text-gray-900">Login to Ndemera</h3>
+                            <button onclick="hideModal('loginModal')" class="text-gray-400 hover:text-gray-500">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <form id="loginForm">
+                                <div class="mb-4">
+                                    <label for="loginEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="loginEmail" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="loginPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                                    <input type="password" id="loginPassword" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                                </div>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center">
+                                        <input id="rememberMe" type="checkbox" class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded">
+                                        <label for="rememberMe" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                                    </div>
+                                    <div class="text-sm">
+                                        <a href="#" class="font-medium text-orange-500 hover:text-orange-600">Forgot password?</a>
+                                    </div>
+                                </div>
+                                <button type="button" onclick="loginUser()" class="w-full bg-orange-500 border border-transparent rounded-md py-2 px-4 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                    Login
+                                </button>
+                            </form>
+                            <div class="mt-4 text-center">
+                                <p class="text-sm text-gray-600">
+                                    Don't have an account? 
+                                    <button onclick="showSignupModal()" class="font-medium text-orange-500 hover:text-orange-600">Sign up</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Modal -->
+        <div id="signupModal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+            <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+                    <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                </div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-medium text-gray-900">Create Your Ndemera Account</h3>
+                            <button onclick="hideModal('signupModal')" class="text-gray-400 hover:text-gray-500">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <div class="mt-2">
+                            <form id="signupForm">
+                                <div class="mb-4">
+                                    <label for="signupName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                                    <input type="text" id="signupName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="signupEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="email" id="signupEmail" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="signupPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                                    <input type="password" id="signupPassword" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                                </div>
+                                <div class="mb-4">
+                                    <label for="signupConfirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                                    <input type="password" id="signupConfirmPassword" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                                </div>
+                                <div class="flex items-center mb-4">
+                                    <input id="termsAgreement" type="checkbox" class="h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded">
+                                    <label for="termsAgreement" class="ml-2 block text-sm text-gray-700">
+                                        I agree to the <a href="#" class="text-orange-500 hover:text-orange-600">Terms of Service</a> and <a href="#" class="text-orange-500 hover:text-orange-600">Privacy Policy</a>
+                                    </label>
+                                </div>
+                                <button type="button" onclick="signupUser()" class="w-full bg-orange-500 border border-transparent rounded-md py-2 px-4 text-sm font-medium text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                                    Create Account
+                                </button>
+                            </form>
+                            <div class="mt-4 text-center">
+                                <p class="text-sm text-gray-600">
+                                    Already have an account? 
+                                    <button onclick="showLoginModal()" class="font-medium text-orange-500 hover:text-orange-600">Login</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard (Hidden until login) -->
+    <div id="dashboard" class="hidden">
+        <!-- Navbar -->
+        <nav class="bg-black text-white shadow-lg">
+            <div class="max-w-full mx-auto px-2 sm:px-6 lg:px-8">
+                <div class="relative flex items-center justify-between h-16">
+                    <!-- Menu button (mobile) -->
+                    <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                        <button onclick="toggleSidebar()" class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-orange-500 focus:outline-none sidebar-toggle hidden">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Left section -->
+                    <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                        <div class="flex-shrink-0 flex items-center">
+                            <div class="flex items-center">
+                                <i class="fas fa-coffee text-orange-500 text-xl mr-2"></i>
+                                <span class="text-xl font-bold text-orange-500">Ndemera</span>
+                            </div>
+                        </div>
+                        <div class="hidden sm:block sm:ml-6">
+                            <div class="flex space-x-4">
+                                <!-- Dashboard nav links -->
+                                <a href="#" class="text-white hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium" onclick="loadDashboardContent('home')">Dashboard</a>
+                                <a href="#" class="text-white hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium" onclick="loadDashboardContent('collect')">Collect Money</a>
+                                <a href="#" class="text-white hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium" onclick="loadDashboardContent('transactions')">Transactions</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right section -->
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <button class="bg-black p-1 rounded-full text-white hover:text-orange-500 focus:outline-none">
+                            <i class="fas fa-bell"></i>
+                        </button>
+                        
+                        <!-- Profile dropdown -->
+                        <div class="ml-3 relative">
+                            <div>
+                                <button onclick="toggleProfileDropdown()" class="bg-black flex text-sm rounded-full focus:outline-none" id="user-menu">
+                                    <div class="h-8 w-8 rounded-full bg-orange-500 flex items-center justify-center">
+                                        <span class="text-white">Fa</span>
+                                    </div>
+                                </button>
+                            </div>
+                            <div id="profileDropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="loadDashboardContent('profile')">Your Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="loadDashboardContent('settings')">Settings</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" onclick="logoutUser()">Sign out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard Layout -->
+        <div class="flex">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar bg-black text-white w-64 min-h-screen fixed hidden sm:block">
+                <div class="p-4">
+                    <div class="flex items-center space-x-3 mb-8">
+                        <div class="h-10 w-10 rounded-full bg-orange-500 flex items-center justify-center">
+                            <span class="text-white">U</span>
+                        </div>
+                        <div class="sidebar-text">
+                            <h4 class="font-medium">Fabrice IDUHIRE</h4>
+                            <p class="text-xs text-gray-400">fabrice@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <nav>
+                        <ul class="space-y-2">
+                            <li>
+                                <a href="#" onclick="loadDashboardContent('home')" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800 bg-gray-800 text-orange-500">
+                                    <i class="fas fa-home"></i>
+                                    <span class="sidebar-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadDashboardContent('balance')" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                                    <i class="fas fa-wallet"></i>
+                                    <span class="sidebar-text">Balance</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadDashboardContent('transactions')" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span class="sidebar-text">Transactions</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadDashboardContent('history')" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                                    <i class="fas fa-history"></i>
+                                    <span class="sidebar-text">History</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadDashboardContent('collect')" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                    <span class="sidebar-text">Collect Money</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadDashboardContent('invite')" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span class="sidebar-text">Invite Friends</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadDashboardContent('profile')" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                                    <i class="fas fa-user"></i>
+                                    <span class="sidebar-text">Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" onclick="loadDashboardContent('settings')" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-800">
+                                    <i class="fas fa-cog"></i>
+                                    <span class="sidebar-text">Settings</span>
+                                </a>
+                            </li>
+                        </ul>
+                        
+                        <div class="mt-8 pt-4 border-t border-gray-700">
+                            <button onclick="logoutUser()" class="flex items-center space-x-3 w-full px-4 py-2 text-left rounded-lg hover:bg-gray-800">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="sidebar-text">Logout</span>
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div id="dashboardContent" class="dashboard-content w-full sm:ml-64">
+                <div class="page-content bg-gray-50 p-4 md:p-8">
+                    <!-- Dashboard Home Content -->
+                    <div id="dashboardHome" class="dashboard-section">
+                        <div class="flex justify-between items-center mb-8">
+                            <h1 class="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
+                            <div class="relative">
+                                <button onclick="sharePaymentLink()" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md flex items-center">
+                                    <i class="fas fa-share-alt mr-2"></i>
+                                    Share Payment Link
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Stats Cards -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <div class="flex items-center">
+                                    <div class="p-3 rounded-full bg-orange-100 text-orange-500 mr-4">
+                                        <i class="fas fa-wallet"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Available Balance</p>
+                                        <h3 class="text-2xl font-bold text-gray-800">$1,250.00</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <div class="flex items-center">
+                                    <div class="p-3 rounded-full bg-blue-100 text-blue-500 mr-4">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Total Received</p>
+                                        <h3 class="text-2xl font-bold text-gray-800">$3,450.00</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <div class="flex items-center">
+                                    <div class="p-3 rounded-full bg-green-100 text-green-500 mr-4">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-medium text-gray-500">Supporters</p>
+                                        <h3 class="text-2xl font-bold text-gray-800">84</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Link Card -->
+                        <div class="bg-white rounded-lg shadow p-6 mb-8">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Personal Payment Link</h2>
+                            <div class="flex items-center">
+                                <div class="flex-grow bg-gray-100 rounded-l-md p-2 overflow-x-auto">
+                                    <code class="text-gray-800">https://ndemera.me/johndoe</code>
+                                </div>
+                                <button onclick="copyPaymentLink()" class="bg-black text-white px-4 py-2 rounded-r-md hover:bg-gray-800">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <p class="mt-2 text-sm text-gray-500">Share this link anywhere - social media, emails, websites. Anyone can use it to send you money instantly.</p>
+                        </div>
+                        
+                        <!-- Recent Transactions -->
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-xl font-semibold text-gray-800">Recent Transactions</h2>
+                                <a href="#" onclick="loadDashboardContent('transactions')" class="text-orange-500 hover:text-orange-600 text-sm font-medium">View All</a>
+                            </div>
+                            
+                            <div class="space-y-4">
+                                <div class="transaction-card bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all duration-200">
+                                    <div class="flex justify-between">
+                                        <div class="flex items-center">
+                                            <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                                <i class="fas fa-arrow-down text-green-500"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">Sarah Johnson</h4>
+                                                <p class="text-xs text-gray-500">2 hours ago</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="font-medium text-green-500">+ $50.00</p>
+                                            <p class="text-xs text-gray-500">Completed</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transaction-card bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-all duration-200">
+                                    <div class="flex justify-between">
+                                        <div class="flex items-center">
+                                            <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                                <i class="fas fa-arrow-down text-green-500"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">Michael Brown</h4>
+                                                <p class="text-xs text-gray-500">Yesterday</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="font-medium text-green-500">+ $25.00</p>
+                                            <p class="text-xs text-gray-500">Completed</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="transaction-card bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transitionall duration-200">
+                                    <div class="flex justify-between">
+                                        <div class="flex items-center">
+                                            <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                                <i class="fas fa-arrow-down text-green-500"></i>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">Emma Wilson</h4>
+                                                <p class="text-xs text-gray-500">3 days ago</p>
+                                            </div>
+                                        </div>
+                                        <div class="text-right">
+                                            <p class="font-medium text-green-500">+ $100.00</p>
+                                            <p class="text-xs text-gray-500">Completed</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Balance Content -->
+                    <div id="dashboardBalance" class="dashboard-section hidden">
+                        <h1 class="text-2xl font-bold text-gray-800 mb-8">Your Balance</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h2 class="text-xl font-semibold text-gray-800">Available Funds</h2>
+                                    <div class="text-2xl font-bold text-gray-800">$1,250.00</div>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <button onclick="loadDashboardContent('withdraw')" class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md">
+                                        Withdraw Money
+                                    </button>
+                                    <button class="text-orange-500 hover:text-orange-600 border border-orange-500 px-4 py-2 rounded-md">
+                                        View All Transactions
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Withdrawal History</h2>
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center border-b pb-2">
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Bank Transfer</h4>
+                                            <p class="text-xs text-gray-500">Completed • Jun 12, 2023</p>
+                                        </div>
+                                        <p class="font-medium text-green-500">$500.00</p>
+                                    </div>
+                                    <div class="flex justify-between items-center border-b pb-2">
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Mobile Money</h4>
+                                            <p class="text-xs text-gray-500">Completed • May 28, 2023</p>
+                                        </div>
+                                        <p class="font-medium text-green-500">$300.00</p>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Bank Transfer</h4>
+                                            <p class="text-xs text-gray-500">Completed • Apr 15, 2023</p>
+                                        </div>
+                                        <p class="font-medium text-green-500">$750.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <h2 class="text-xl font-semibold text-gray-800 mb-4">Payment Graph</h2>
+                            <div class="h-64 bg-gray-100 rounded flex items-center justify-center">
+                                <p class="text-gray-500">Graph showing payment history will appear here</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transactions Content -->
+                    <div id="dashboardTransactions" class="dashboard-section hidden">
+                        <h1 class="text-2xl font-bold text-gray-800 mb-8">Transaction History</h1>
+                        <div class="bg-white rounded-lg shadow p-6 mb-6">
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                                <div class="w-full md:w-auto mb-4 md:mb-0">
+                                    <div class="relative">
+                                        <input type="text" placeholder="Search transactions..." class="w-full md:w-64 pl-10 pr-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                        <div class="absolute left-3 top-2.5 text-gray-400">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <select class="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                        <option>All Types</option>
+                                        <option>Received</option>
+                                        <option>Withdrawn</option>
+                                    </select>
+                                    <select class="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                        <option>All Time</option>
+                                        <option>Today</option>
+                                        <option>This Week</option>
+                                        <option>This Month</option>
+                                        <option>This Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 rounded-full bg-green based="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                                        <i class="fas fa-arrow-down text-green-500"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-medium text-gray-800">Sarah Johnson</h4>
+                                                        <p class="text-xs text-gray-500">Coffee Support</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                Jun 12, 2023 10:30 AM
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Completed
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
+                                                + $50.00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                                        <i class="fas fa-arrow-down text-green-500"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-medium text-gray-800">Michael Brown</h4>
+                                                        <p class="text-xs text-gray-500">Podcast Support</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                Jun 10, 2023 2:15 PM
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Completed
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
+                                                + $25.00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                                                        <i class="fas fa-arrow-down text-green-500"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-medium text-gray-800">Emma Wilson</h4>
+                                                        <p class="text-xs text-gray-500">Birthday Gift</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                Jun 5, 2023 9:45 AM
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Completed
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-600">
+                                                + $100.00
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="h-10 w-10 rounded-full bg-yellow-100 flex items-center justify-center mr-4">
+                                                        <i class="fas fa-arrow-up text-yellow-500"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-medium text-gray-800">Bank Transfer</h4>
+                                                        <p class="text-xs text-gray-500">Withdrawal</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                May 28, 2023 4:20 PM
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    Completed
+                                                </span>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-red-600">
+                                                - $300.00
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="mt-6 flex justify-between items-center">
+                                <div class="text-sm text-gray-500">
+                                    Showing 1 to 4 of 4 entries
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 border rounded-md bg-gray-100 text-gray-400 cursor-not-allowed" disabled>Previous</button>
+                                    <button class="px-3 py-1 border rounded-md bg-orange-500 text-white">1</button>
+                                    <button class="px-3 py-1 border rounded-md bg-gray-100 text-gray-600 hover:bg-gray-200">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Collect Money Content -->
+                    <div id="dashboardCollect" class="dashboard-section hidden">
+                        <h1 class="text-2xl font-bold text-gray-800 mb-8">Collect Money</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Create New Funding Link</h2>
+                                <form>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Funding Purpose</label>
+                                        <input type="text" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="e.g. New laptop, Vacation, Charity">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Target Amount (Optional)</label>
+                                        <div class="relative">
+                                            <span class="absolute left-3 top-2.5">$</span>
+                                            <input type="number" class="w-full border rounded-md pl-8 pr-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="0.00">
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                        <textarea class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" rows="3" placeholder="Tell people why you're collecting money..."></textarea>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Cover Image (Optional)</label>
+                                        <div class="border-2 border-dashed border-gray-300 rounded-md p-6 text-center">
+                                            <div class="flex justify-center mb-2">
+                                                <i class="fas fa-cloud-upload-alt text-3xl text-gray-400"></i>
+                                            </div>
+                                            <p class="text-sm text-gray-500 mb-1">Drag & drop your image here</p>
+                                            <p class="text-xs text-gray-400 mb-3">or</p>
+                                            <button type="button" class="px-3 py-1 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                                Select File
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="w-full bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md">
+                                        Create Funding Link
+                                    </button>
+                                </form>
+                            </div>
+                            
+                            <div>
+                                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Funding Links</h2>
+                                    <div class="space-y-4">
+                                        <div class="border rounded-lg overflow-hidden">
+                                            <div class="bg-gray-100 h-32"></div>
+                                            <div class="p-4">
+                                                <h3 class="font-medium text-gray-800 mb-1">New Laptop for Work</h3>
+                                                <div class="w-full bg-gray-200 rounded-full h-1.5 mb-2">
+                                                    <div class="bg-orange-500 h-1.5 rounded-full" style="width: 45%"></div>
+                                                </div>
+                                                <div class="flex justify-between text-sm text-gray-500 mb-3">
+                                                    <span>$450 raised</span>
+                                                    <span>45% of $1,000</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-sm text-gray-500">25 supporters</span>
+                                                    <div class="flex space-x-2">
+                                                        <button class="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded">Share</button>
+                                                        <button class="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded">View</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="border rounded-lg overflow-hidden">
+                                            <div class="bg-gray-100 h-32"></div>
+                                            <div class="p-4">
+                                                <h3 class="font-medium text-gray-800 mb-1">Vacation Fund</h3>
+                                                <div class="w-full bg-gray-200 rounded-full h-1.5 mb-2">
+                                                    <div class="bg-orange-500 h-1.5 rounded-full" style="width: 12%"></div>
+                                                </div>
+                                                <div class="flex justify-between text-sm text-gray-500 mb-3">
+                                                    <span>$120 raised</span>
+                                                    <span>12% of $1,000</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-sm text-gray-500">8 supporters</span>
+                                                    <div class="flex space-x-2">
+                                                        <button class="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded">Share</button>
+                                                        <button class="text-xs bg-gray-100 hover:bg-gray-200 px-2 py-1 rounded">View</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow p-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Quick Share Options</h2>
+                                    <div class="grid grid-cols-2 gap-2 mb-4">
+                                        <button class="flex items-center justify-center space-x-2 border rounded-md p-2 hover:bg-gray-50">
+                                            <i class="fab fa-facebook text-blue-500"></i>
+                                            <span>Facebook</span>
+                                        </button>
+                                        <button class="flex items-center justify-center space-x-2 border rounded-md p-2 hover:bg-gray-50">
+                                            <i class="fab fa-twitter text-blue-400"></i>
+                                            <span>Twitter</span>
+                                        </button>
+                                        <button class="flex items-center justify-center space-x-2 border rounded-md p-2 hover:bg-gray-50">
+                                            <i class="fab fa-whatsapp text-green-500"></i>
+                                            <span>WhatsApp</span>
+                                        </button>
+                                        <button class="flex items-center justify-center space-x-2 border rounded-md p-2 hover:bg-gray-50">
+                                            <i class="fas fa-envelope text-gray-500"></i>
+                                            <span>Email</span>
+                                        </button>
+                                    </div>
+                                    <div class="relative">
+                                        <input type="text" value="https://ndemera.me/johndoe/new-laptop" class="w-full pl-3 pr-10 py-2 border rounded-md bg-gray-100 text-gray-700 truncate" readonly>
+                                        <button onclick="copyFundingLink()" class="absolute right-2 top-2 text-gray-500 hover:text-gray-700">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Content -->
+                    <div id="dashboardProfile" class="dashboard-section hidden">
+                        <h1 class="text-2xl font-bold text-gray-800 mb-8">Your Profile</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="md:col-span-2">
+                                <div class="bg-white rounded-lg shadow p-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Personal Information</h2>
+                                    <form>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                                                <input type="text" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" value="Fabrice">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                                                <input type="text" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" value="IDUHIRE">
+                                            </div>
+                                            <div class="md:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                                <input type="email" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" value="fabrice@gmail.com">
+                                            </div>
+                                            <div class="md:col-span-2">
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                                                <textarea class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" rows="3">Here to collect money</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="mt-6">
+                                            <button type="button" class="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md">
+                                                Update Profile
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow p-6 mt-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Change Password</h2>
+                                    <form>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+                                                <input type="password" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+                                                <input type="password" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Confirm New Password</label>
+                                                <input type="password" class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                            </div>
+                                        </div>
+                                        <div class="mt-6">
+                                            <button type="button" class="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md">
+                                                Change Password
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="bg-white rounded-lg shadow p-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Profile Picture</h2>
+                                    <div class="flex flex-col items-center">
+                                        <div class="h-32 w-32 rounded-full bg-orange-500 flex items-center justify-center mb-4">
+                                            <span class="text-white text-4xl">Fabrice</span>
+                                        </div>
+                                        <div class="text-center">
+                                            <p class="text-sm text-gray-500 mb-4">We recommend an image of at least 400x400. Gif works too!</p>
+                                            <button type="button" class="px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                                Upload New Photo
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow p-6 mt-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Social Links</h2>
+                                    <form>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Website</label>
+                                                <div class="flex">
+                                                    <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">https://</span>
+                                                    <input type="text" class="flex-1 block w-full rounded-none rounded-r-md border-gray-300 focus:ring-orange-500 focus:border-orange-500" placeholder="yourwebsite.com">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Twitter</label>
+                                                <div class="flex">
+                                                    <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">@</span>
+                                                    <input type="text" class="flex-1 block w-full rounded-none rounded-r-md border-gray-300 focus:ring-orange-500 focus:border-orange-500" placeholder="username">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label class="block text-sm font-medium text-gray-700 mb-1">Instagram</label>
+                                                <div class="flex">
+                                                    <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500">@</span>
+                                                    <input type="text" class="flex-1 block w-full rounded-none rounded-r-md border-gray-300 focus:ring-orange-500 focus:border-orange-500" placeholder="username">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-6">
+                                            <button type="button" class="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md">
+                                                Save Changes
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Settings Content -->
+                    <div id="dashboardSettings" class="dashboard-section hidden">
+                        <h1 class="text-2xl font-bold text-gray-800 mb-8">Settings</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="md:col-span-2">
+                                <div class="bg-white rounded-lg shadow p-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Payment Methods</h2>
+                                    <div class="space-y-4">
+                                        <div class="border rounded-lg p-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <div class="flex items-center">
+                                                    <div class="h-8 w-12 bg-gray-100 rounded mr-3 flex items-center justify-center">
+                                                        <i class="fas fa-building text-gray-500"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-medium">Bank Transfer</h4>
+                                                    </div>
+                                                </div>
+                                                <button class="text-sm text-orange-500 hover:text-orange-600">Edit</button>
+                                            </div>
+                                            <p class="text-sm text-gray-500">GT Bank •••• 4587</p>
+                                        </div>
+                                        
+                                        <div class="border rounded-lg p-4">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <div class="flex items-center">
+                                                    <div class="h-8 w-12 bg-gray-100 rounded mr-3 flex items-center justify-center">
+                                                        <i class="fas fa-mobile-alt text-gray-500"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h4 class="font-medium">Mobile Money</h4>
+                                                    </div>
+                                                </div>
+                                                <button class="text-sm text-orange-500 hover:text-orange-600">Edit</button>
+                                            </div>
+                                            <p class="text-sm text-gray-500">MTN Mobile Money •••• 7821</p>
+                                        </div>
+                                        
+                                        <button class="mt-4 flex items-center text-orange-500 hover:text-orange-600">
+                                            <i class="fas fa-plus-circle mr-2"></i>
+                                            <span>Add Payment Method</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow p-6 mt-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Notification Preferences</h2>
+                                    <form>
+                                        <div class="divide-y divide-gray-200">
+                                            <div class="py-4">
+                                                <div class="flex justify-between items-center">
+                                                    <div>
+                                                        <h4 class="font-medium text-gray-800">Email Notifications</h4>
+                                                        <p class="text-sm text-gray-500">Receive important account notifications via email</p>
+                                                    </div>
+                                                    <label class="inline-flex items-center cursor-pointer">
+                                                        <input type="checkbox" value="" class="sr-only peer" checked>
+                                                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="py-4">
+                                                <div class="flex justify-between items-center">
+                                                    <div>
+                                                        <h4 class="font-medium text-gray-800">Payment Notifications</h4>
+                                                        <p class="text-sm text-gray-500">Get notified when you receive new payments</p>
+                                                    </div>
+                                                    <label class="inline-flex items-center cursor-pointer">
+                                                        <input type="checkbox" value="" class="sr-only peer" checked>
+                                                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="py-4">
+                                                <div class="flex justify-between items-center">
+                                                    <div>
+                                                        <h4 class="font-medium text-gray-800">Withdrawal Notifications</h4>
+                                                        <p class="text-sm text-gray-500">Get notified when your withdrawals are processed</p>
+                                                    </div>
+                                                    <label class="inline-flex items-center cursor-pointer">
+                                                        <input type="checkbox" value="" class="sr-only peer" checked>
+                                                        <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-orange-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-orange-500"></div>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-6">
+                                            <button type="button" class="px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-md">
+                                                Save Preferences
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <div class="bg-white rounded-lg shadow p-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Account Settings</h2>
+                                    <div class="space-y-4">
+                                        <button onclick="loadDashboardContent('profile')" class="w-full flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-user text-orange-500 mr-3"></i>
+                                                <span>Profile Information</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-gray-400"></i>
+                                        </button>
+                                        
+                                        <button class="w-full flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-lock text-orange-500 mr-3"></i>
+                                                <span>Password & Security</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-gray-400"></i>
+                                        </button>
+                                        
+                                        <button class="w-full flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-bell text-orange-500 mr-3"></i>
+                                                <span>Notification Settings</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-gray-400"></i>
+                                        </button>
+                                        
+                                        <button class="w-full flex items-center justify-between p-3 border rounded-lg hover:bg-gray-50">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-globe text-orange-500 mr-3"></i>
+                                                <span>Language & Region</span>
+                                            </div>
+                                            <i class="fas fa-chevron-right text-gray-400"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow p-6 mt-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Danger Zone</h2>
+                                    <div class="space-y-3">
+                                        <button class="w-full text-left p-3 border border-red-200 rounded-lg text-red-500 hover:bg-red-50">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-trash mr-3"></i>
+                                                <span>Delete Account</span>
+                                            </div>
+                                        </button>
+                                        <button class="w-full text-left p-3 border border-yellow-200 rounded-lg text-yellow-600 hover:bg-yellow-50">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-moon mr-3"></i>
+                                                <span>Deactivate Account</span>
+                                            </div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Invite Friends Content -->
+                    <div id="dashboardInvite" class="dashboard-section hidden">
+                        <h1 class="text-2xl font-bold text-gray-800 mb-8">Invite Friends</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Your Referral Link</h2>
+                                <div class="mb-6">
+                                    <div class="relative">
+                                        <input type="text" id="referralLink" value="https://ndemera.me?ref=ndemera-fabriceiduhires" class="w-full pl-3 pr-10 py-2 border rounded-md bg-gray-100 text-gray-700 truncate" readonly>
+                                        <button onclick="copyReferralLink()" class="absolute right-2 top-2 text-gray-500 hover:text-gray-700">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <p class="mt-2 text-sm text-gray-500">Share this link and earn 10% of their first transaction when they sign up.</p>
+                                </div>
+                                
+                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Quick Share</h2>
+                                <div class="grid grid-cols-2 gap-2 mb-4">
+                                    <button class="flex items-center justify-center space-x-2 border rounded-md p-2 hover:bg-gray-50">
+                                        <i class="fab fa-facebook text-blue-500"></i>
+                                        <span>Facebook</span>
+                                    </button>
+                                    <button class="flex items-center justify-center space-x-2 border rounded-md p-2 hover:bg-gray-50">
+                                        <i class="fab fa-twitter text-blue-400"></i>
+                                        <span>Twitter</span>
+                                    </button>
+                                    <button class="flex items-center justify-center space-x-2 border rounded-md p-2 hover:bg-gray-50">
+                                        <i class="fab fa-whatsapp text-green-500"></i>
+                                        <span>WhatsApp</span>
+                                    </button>
+                                    <button class="flex items-center justify-center space-x-2 border rounded-md p-2 hover:bg-gray-50">
+                                        <i class="fas fa-envelope text-gray-500"></i>
+                                        <span>Email</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h2 class="text-xl font-semibold text-gray-800 mb-6">Referral Statistics</h2>
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="border rounded-lg p-3 text-center">
+                                        <p class="text-sm font-medium text-gray-500">Total Referrals</p>
+                                        <h3 class="text-2xl font-bold text-gray-800">12</h3>
+                                    </div>
+                                    <div class="border rounded-lg p-3 text-center">
+                                        <p class="text-sm font-medium text-gray-500">Earned</p>
+                                        <h3 class="text-2xl font-bold text-gray-800">$45.50</h3>
+                                    </div>
+                                </div>
+                                
+                                <h3 class="font-medium text-gray-800 mb-3">Recent Referrals</h3>
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between p-2 border-b">
+                                        <div class="flex items-center">
+                                            <div class="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-user text-orange-500 text-sm"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-medium text-gray-800">Sarah Johnson</p>
+                                                <p class="text-xs text-gray-500">Signed up 2 days ago</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-green-500 text-sm font-medium">+$5.00</span>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-2 border-b">
+                                        <div class="flex items-center">
+                                            <div class="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-user text-orange-500 text-sm"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-medium text-gray-800">Michael Brown</p>
+                                                <p class="text-xs text-gray-500">Signed up 1 week ago</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-green-500 text-sm font-medium">+$10.50</span>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between p-2 border-b">
+                                        <div class="flex items-center">
+                                            <div class="h-8 w-8 rounded-full bg-orange-100 flex items-center justify-center mr-3">
+                                                <i class="fas fa-user text-orange-500 text-sm"></i>
+                                            </div>
+                                            <div>
+                                                <p class="font-medium text-gray-800">Emma Wilson</p>
+                                                <p class="text-xs text-gray-500">Signed up 2 weeks ago</p>
+                                            </div>
+                                        </div>
+                                        <span class="text-green-500 text-sm font-medium">+$15.00</span>
+                                    </div>
+                                </div>
+                                
+                                <button class="mt-6 w-full text-center text-orange-500 hover:text-orange-600 font-medium">
+                                    View All Referrals
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Withdraw Money Content -->
+                    <div id="dashboardWithdraw" class="dashboard-section hidden">
+                        <h1 class="text-2xl font-bold text-gray-800 mb-8">Withdraw Money</h1>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="bg-white rounded-lg shadow p-6">
+                                <h2 class="text-xl font-semibold text-gray-800 mb-4">Withdraw Funds</h2>
+                                <form>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                                        <div class="relative">
+                                            <span class="absolute left-3 top-2.5">$</span>
+                                            <input type="number" class="w-full pl-8 pr-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="0.00" min="5" max="1250">
+                                        </div>
+                                        <p class="mt-1 text-xs text-gray-500">Available balance: $1,250.00 (Min. $5.00)</p>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Withdrawal Method</label>
+                                        <select class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500">
+                                            <option>Bank Transfer - GT Bank •••• 4587</option>
+                                            <option>Mobile Money - MTN •••• 7821</option>
+                                            <option>Add New Method</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Notes (Optional)</label>
+                                        <textarea class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500" rows="2" placeholder="Add a note for reference..."></textarea>
+                                    </div>
+                                    <button type="button" class="w-full bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md">
+                                        Withdraw Funds
+                                    </button>
+                                </form>
+                            </div>
+                            
+                            <div>
+                                <div class="bg-white rounded-lg shadow p-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mbNote: The code was cut off in the middle. I'll continue from where it left off.
+
+```html
+                                    </h2>
+                                    <div class="space-y-3">
+                                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-md">
+                                            <div>
+                                                <p class="font-medium text-gray-800">Processing Fee</p>
+                                                <p class="text-xs text-gray-500">Standard bank charge</p>
+                                            </div>
+                                            <span class="text-gray-800">$2.50</span>
+                                        </div>
+                                        
+                                        <div class="flex justify-between items-center p-3 bg-gray-50 rounded-md">
+                                            <div>
+                                                <p class="font-medium text-gray-800">Estimated Delivery</p>
+                                                <p class="text-xs text-gray-500">Within 24-48 hours</p>
+                                            </div>
+                                            <span class="text-gray-800">1-2 days</span>
+                                        </div>
+                                        
+                                        <div class="border-t pt-3">
+                                            <p class="text-sm text-gray-500 mb-1">For withdrawals over $500, additional verification might be required.</p>
+                                            <p class="text-sm text-gray-500">Contact support if you have any questions about withdrawals.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-white rounded-lg shadow p-6 mt-6">
+                                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Recent Withdrawals</h2>
+                                    <div class="space-y-3">
+                                        <div class="flex justify-between items-center border-b pb-2">
+                                            <div>
+                                                <p class="font-medium text-gray-800">Bank Transfer</p>
+                                                <p class="text-xs text-gray-500">Completed • Jun 12, 2023</p>
+                                            </div>
+                                            <span class="text-red-500">-$500.00</span>
+                                        </div>
+                                        
+                                        <div class="flex justify-between items-center border-b pb-2">
+                                            <div>
+                                                <p class="font-medium text-gray-800">Mobile Money</p>
+                                                <p class="text-xs text-gray-500">Completed • May 28, 2023</p>
+                                            </div>
+                                            <span class="text-red-500">-$300.00</span>
+                                        </div>
+                                        
+                                        <div class="flex justify-between items-center">
+                                            <div>
+                                                <p class="font-medium text-gray-800">Bank Transfer</p>
+                                                <p class="text-xs text-gray-500">Completed • Apr 15, 2023</p>
+                                            </div>
+                                            <span class="text-red-500">-$750.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle functions
+        function toggleProfileDropdown() {
+            document.getElementById('profileDropdown').classList.toggle('hidden');
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('sidebar-open');
+            sidebar.classList.toggle('sidebar-closed');
+        }
+
+        // Modal functions
+        function showLoginModal() {
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+
+        function showSignupModal() {
+            document.getElementById('signupModal').classList.remove('hidden');
+        }
+
+        function hideModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        // Authentication functions
+        function loginUser() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if(email && password) {
+                // For demo purposes, just show the dashboard
+                document.getElementById('homepage').classList.add('hidden');
+                document.getElementById('dashboard').classList.remove('hidden');
+                hideModal('loginModal');
+                loadDashboardContent('home');
+            } else {
+                alert('Please enter both email and password');
+            }
+        }
+
+        function signupUser() {
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if(!name || !email || !password || !confirmPassword) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if(password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            if(!document.getElementById('termsAgreement').checked) {
+                alert('Please agree to the terms and privacy policy');
+                return;
+            }
+            
+            // For demo purposes, just show the dashboard
+            document.getElementById('homepage').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            hideModal('signupModal');
+            loadDashboardContent('home');
+        }
+
+        function logoutUser() {
+            // For demo purposes, just show the homepage
+            document.getElementById('homepage').classList.remove('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
+        }
+
+        // Dashboard content loading
+        function loadDashboardContent(section) {
+            // Hide all sections
+            document.querySelectorAll('.dashboard-section').forEach(el => {
+                el.classList.add('hidden');
+            });
+            
+            // Show the selected section
+            document.getElementById('dashboard' + section.charAt(0).toUpperCase() + section.slice(1)).classList.remove('hidden');
+            
+            // Close any open dropdowns
+            document.getElementById('profileDropdown').classList.add('hidden');
+            
+            // For mobile, close sidebar after navigation
+            if(window.innerWidth < 768) {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.remove('sidebar-open');
+            }
+        }
+
+        // Copy functions
+        function copyPaymentLink() {
+            navigator.clipboard.writeText('https://ndemera.me/johndoe');
+            alert('Payment link copied to clipboard!');
+        }
+
+        function copyFundingLink() {
+            navigator.clipboard.writeText('https://ndemera.me/johndoe/new-laptop');
+            alert('Funding link copied to clipboard!');
+        }
+
+        function copyReferralLink() {
+            navigator.clipboard.writeText('https://ndemera.me?ref=ndemera-johndoe');
+            alert('Referral link copied to clipboard!');
+        }
+
+        function sharePaymentLink() {
+            // This would be the actual share functionality in a real app
+            alert('Share functionality would open here in a real app');
+        }
+
+        // Initialize dashboard for mobile
+        function initDashboard() {
+            if(window.innerWidth < 768) {
+                document.querySelectorAll('.sidebar-toggle').forEach(el => {
+                    el.classList.remove('hidden');
+                });
+                document.getElementById('sidebar').classList.add('hidden');
+            } else {
+                document.querySelectorAll('.sidebar-toggle').forEach(el => {
+                    el.classList.add('hidden');
+                });
+                document.getElementById('sidebar').classList.remove('hidden');
+            }
+        }
+
+        // Event listeners
+        window.addEventListener('resize', initDashboard);
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            initDashboard();
+            loadDashboardContent('home');
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!event.target.matches('#user-menu') && !event.target.closest('#profileDropdown')) {
+                    document.getElementById('profileDropdown').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<!---
+on the hoempage we should be having the starting money to transfer just like when somene gives a link to fund him/her just like how buy me a coffee when someone gives a link to buy him a coffee the 1st page contains  some different list money cards to fund then, when you choose one you login to complete the action of funding or buy him a coffee also on the dashboard, history should work, and on balance payment graph should work
+-->
